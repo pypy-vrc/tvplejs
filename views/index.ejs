@@ -1,0 +1,42 @@
+<%- include('include/header'); %>
+
+<p><span class="glyphicon glyphicon-ok"></span> <span id="videoListDesc"></span></p>
+<div class="row" id="videoList"></div>
+
+<script>
+$(function() {
+	$.ajax({
+		cache: false,
+		url: '/db',
+		success: function(data) {
+			var html = '', a = [];
+			
+			_.each(data, function(title, videoId) {
+				a.push(+videoId);
+			});
+			
+			a = a.sort(function(a, b) {
+				return b - a;
+			});
+			
+			_.each(a, function(videoId) {
+				html += '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">';
+				html += 	'<a class="thumbnail" href="/' + videoId + '" target=_blank>';
+				html += 		'<img class="lazy" data-original="/static/tvple/' + videoId + '.jpg"/>';
+				html += 		'<h5><small>' + data[videoId] + '</small></h5>';
+				html += 	'</a>';
+				html += '</div>';
+			});
+			
+			$('#videoList').html(html);
+			$('#videoListDesc').text( '비디오가 ' + a.length + '개 있습니다.' );
+			$('img.lazy').lazyload();
+		},
+		error: function() {
+			alert('정보를 가져올 수 없습니다');
+		}
+	});
+});
+</script>
+
+<%- include('include/footer'); %>

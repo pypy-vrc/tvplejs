@@ -1,0 +1,21 @@
+<%- include('include/header'); %>
+
+<h3><strong><%=title%></strong></h3>
+<div id="play"></div>
+
+<script src="/static/flash/swfobject.js"></script>
+<script>
+$(function() {
+    var flashvars = {};
+    flashvars.key = '<%=token%>';
+    var params = {};
+    params.allowfullscreen = 'true';
+    params.allowscriptaccess = 'always';
+    var attributes = {};
+    attributes.id = 'player';
+    attributes.wmode = 'direct';
+    swfobject.embedSWF('/static/flash/player-v2.40202.swf', 'play', '100%', '540', '11.1', '//tvple.com/static/flash/expressInstall.swf', flashvars, params, attributes);
+});
+</script>
+
+<%- include('include/footer'); %>

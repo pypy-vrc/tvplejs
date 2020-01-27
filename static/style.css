@@ -1,0 +1,24 @@
+html, body {
+	font-family: 'Nanum Gothic';
+}
+
+body {
+	background: #efefef;
+	padding-top: 70px;
+	padding-bottom: 30px;
+}
+
+#videoList img {
+	width: 100% !important;
+	height: 120px !important;
+}
+
+#videoList a {
+	text-decoration: none;
+}
+
+#videoList h5 {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
